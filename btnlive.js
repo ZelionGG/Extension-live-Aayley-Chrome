@@ -47,7 +47,7 @@ BtnLive.prototype.__dailyLength = BtnLive.prototype.__dailyParams.length;
 
 BtnLive.prototype.__getUrl = function (id, type, key) {
     if (type === "twitch") {
-        return "https://api.twitch.tv/kraken/streams/" + id;
+        return "https://api.twitch.tv/helix/streams?user_login=" + id;
     } else if(type === "youtube") {
         return "https://www.googleapis.com/youtube/v3/search?part=snippet&eventType=live&type=video&key=" + key + "&channelId=" + id + '&t=' + Date.now();
     } else {
@@ -90,7 +90,7 @@ BtnLive.prototype.__check = function(chaine) {
     var self = this;
     var url;
     if ("id" in chaine) {
-        var key = "AIzaSyA9SiPFacXy0nB4DDlbNIDvQ62N0CTM5vU";
+        var key = "w6k400q2dbmnv8u7ngueb18vp0vdpi";
         if ("key" in chaine) {
             key = chaine.key;
         }
@@ -114,9 +114,9 @@ BtnLive.prototype.__check = function(chaine) {
                 }
                 self.__checkDone(online, chaine);
             } else {
-                var online = chaine.type === 'dailymotion' ? data.onair : (data.stream != null && data.stream.channel.status.toLowerCase().indexOf('#secret') == -1);
+                var online = chaine.type === 'dailymotion' ? data.onair : (data.data[0] !== undefined && data.data[0].title.toLowerCase().indexOf('#secret') == -1);
                 if (online && 'filtre' in chaine) {
-                    var titre = chaine.type === 'dailymotion' ? data.title : data.stream.channel.status;
+                    var titre = chaine.type === 'dailymotion' ? data.title : data.data[0].title;
                     var r = new RegExp(chaine.filtre,"i");
                     online = r.test(titre);
                 }
@@ -132,7 +132,7 @@ BtnLive.prototype.__get = function(url, type, callback) {
             Request({
                 url: url,
                 headers: {
-                    'Client-ID': 'iinv27ywmtjl2trnievucce2zo7xav1'
+                    'Client-ID': '7sjt9diwcoz210sdkc9xkokrm8h2ol'
                 },
                 onComplete: function (response) {
                     if (response.json) {
@@ -179,7 +179,7 @@ BtnLive.prototype.__get = function(url, type, callback) {
      
         xhr.open("GET", url, true);
         if (type == "twitch") {
-            xhr.setRequestHeader("Client-ID", "iinv27ywmtjl2trnievucce2zo7xav1");
+            xhr.setRequestHeader("Client-ID", "7sjt9diwcoz210sdkc9xkokrm8h2ol");
         }
         xhr.send(null);
     }
