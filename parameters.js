@@ -3,7 +3,7 @@ var aayley_params = {
     "message": "Aayley est en live",
     "offlineUrl": "http:\/\/www.twitch.tv\/aayley",
     "chaines": [{
-        "id": "71356558",
+        "id": "aayley",
         "type": "twitch",
         "redirect": "http:\/\/www.twitch.tv\/aayley",
         "key": ""
