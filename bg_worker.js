@@ -3,7 +3,7 @@ const clientSecret = 'new38yo7mh9tc2d6huuxlip1f24ali';
 let accessToken;
 let url = 'https://www.twitch.tv/aayley';
 
-chrome.alarms.create({ periodInMinutes: 0.5 });
+chrome.alarms.create({ periodInMinutes: 1 });
 chrome.alarms.onAlarm.addListener(getLiveStatus);
 
 async function getLiveStatus() {
@@ -35,14 +35,14 @@ async function getTwitchStatus() {
         const streamData = data.data[0];
         if (streamData && streamData.type === 'live') {
             if (this.notification != true)
-                chrome.notifications.create('notifyON Aayley', { type: "basic", title: 'Aayley', message: 'Aayley est en live', iconUrl: "iconon128.png" }, function (id) { });
+                chrome.notifications.create('notifyON Aayley', { type: "basic", title: 'Aayley', message: 'Aayley est en live', iconUrl: "images/iconon128.png" }, function (id) { });
 
             this.notification = true;
-            chrome.action.setIcon({ path: "iconon48.png" });
+            chrome.action.setIcon({ path: "images/iconon48.png" });
             return true;
         } else {
             this.notification = false;
-            chrome.action.setIcon({ path: "iconoff48.png" });
+            chrome.action.setIcon({ path: "images/iconoff48.png" });
         }
     } catch (error) {
         console.log(error);
