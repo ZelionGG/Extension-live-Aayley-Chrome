@@ -22,6 +22,9 @@
         "alarms",
         "notifications"
     ],
+    "host_permissions": [
+        "https://twitch.theorycraft.gg/*"
+    ],
     "update_url": "https://clients2.google.com/service/update2/crx",
     "version": "4.0"
 }
